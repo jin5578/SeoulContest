@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.ui.camera.CameraActivity
 import com.tistory.jeongs0222.seoulcontest.ui.picture.PictureActivity
@@ -21,7 +22,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
 
+        temporaryImage()
+
         onClickEvent()
+    }
+
+    private fun temporaryImage() {
+        Glide.with(this)
+                .asBitmap()
+                .load(R.drawable.temporary)
+                .into(main_temporary_imageView)
     }
 
     private fun onClickEvent() {

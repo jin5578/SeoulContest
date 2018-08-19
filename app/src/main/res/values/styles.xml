@@ -11,14 +11,6 @@
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:background">#F48B94</item>
     </style>
-
-    <!-- 폰트 적용 -->
-    <style name="TabLayoutTextStyle" parent="@android:style/TextAppearance.DeviceDefault.Widget.TabWidget">
-        <item name="android:fontFamily">@font/goyang</item>
-        <item name="android:textSize">10sp</item>
-    </style>
-
 
 </resources>

@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F48B94"
+    android:background="@color/colorWhite"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="맛집스탬프"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorBlack"
         android:textSize="20sp"
         android:fontFamily="@font/goyang"
         app:layout_constraintStart_toStartOf="parent"

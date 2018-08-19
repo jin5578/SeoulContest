@@ -45,6 +45,16 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
+        android:id="@+id/main_temporary_imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:src="@drawable/temporary"/>
+
+    <ImageView
         android:id="@+id/main_camera_imageView"
         android:layout_width="30dp"
         android:layout_height="30dp"

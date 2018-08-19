@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         temporaryImage()
 
         onClickEvent()
+
     }
 
     private fun temporaryImage() {

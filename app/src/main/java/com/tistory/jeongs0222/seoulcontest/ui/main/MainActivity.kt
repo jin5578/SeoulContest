@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.seoulcontest.ui.main
 
 import android.Manifest
+import android.app.Activity
 import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -10,13 +11,15 @@ import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.ui.camera.CameraActivity
-import com.tistory.jeongs0222.seoulcontest.ui.picture.PictureActivity
+import com.tistory.jeongs0222.seoulcontest.ui.photoshop.PhotoshopActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private val checkList = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
 
     private val PERMISSION = 111;
+
+    private val PICK_FROM_GALLERY = 222;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
         main_picture_imageView.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                startActivity(PictureActivity::class.java)
+                getGallery()
             } else {
                 permissionAlert()
             }
@@ -92,6 +97,13 @@ class MainActivity : AppCompatActivity() {
         } else {
             startActivity(intent)
         }
+    }
+
+    private fun getGallery() {
+        val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE)
+
+        startActivityForResult(intent, PICK_FROM_GALLERY)
     }
 
     private fun permissionAlert() {
@@ -122,6 +134,32 @@ class MainActivity : AppCompatActivity() {
 
                         return
                     }
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == PICK_FROM_GALLERY) {
+
+            if(resultCode == Activity.RESULT_OK) {
+
+                Log.d("test","data : "+data)
+
+                if(data != null) {
+                    val temp = data.data
+
+                    val intent = Intent(this, PhotoshopActivity::class.java)
+                    intent.putExtra("temp", temp)
+
+                    startActivity(intent)
+
+                    /*Glide.with(this)
+                            .asBitmap()
+                            .load(temp)
+                            .into(main_temporary_imageView)*/
                 }
             }
         }

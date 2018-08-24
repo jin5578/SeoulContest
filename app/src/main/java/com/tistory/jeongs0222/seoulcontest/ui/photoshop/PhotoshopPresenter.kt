@@ -12,6 +12,7 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     private lateinit var context: Context
 
     private lateinit var mAdapter: PhotoshopStampAdapter
+    private lateinit var fAdapter: PhotoshopFontAdapter
 
 
     override fun setView(view: PhotoshopContract.View, context: Context) {
@@ -19,11 +20,16 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         this.context = context
     }
 
-    override fun setUpRecyclerView() {
-        mAdapter = PhotoshopStampAdapter(context)
+    override fun setUpRecyclerView(sort: Int) {
+
+        when(sort) {
+            0 -> mAdapter = PhotoshopStampAdapter(context)
+
+            1 -> fAdapter = PhotoshopFontAdapter(context)
+        }
 
         view.recyclerView().apply {
-            adapter = mAdapter
+            adapter = if(sort == 0) mAdapter else fAdapter
 
             layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
             setHasFixedSize(true)

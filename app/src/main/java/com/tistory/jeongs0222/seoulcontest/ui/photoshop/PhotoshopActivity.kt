@@ -46,7 +46,7 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
         mPresenter.setView(this, this)
 
-        mPresenter.setUpRecyclerView()
+        mPresenter.setUpRecyclerView(0)
 
         getValue()
 
@@ -77,6 +77,14 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
             transitionSet(1)
 
             photoshopVisibility(1)
+        }
+
+        photoshop_stamp_imageView.setOnClickListener {
+            mPresenter.setUpRecyclerView(0)
+        }
+
+        photoshop_font_imageView.setOnClickListener {
+            mPresenter.setUpRecyclerView(1)
         }
     }
 

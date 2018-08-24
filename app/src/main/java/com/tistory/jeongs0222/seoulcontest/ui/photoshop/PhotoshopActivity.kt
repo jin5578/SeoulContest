@@ -11,6 +11,9 @@ import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.request.RequestOptions
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.util.copy
 import com.tistory.jeongs0222.seoulcontest.util.updateWith

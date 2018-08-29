@@ -9,7 +9,7 @@
     android:layout_marginRight="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorWhite">
+    android:background="@color/colorLightLightGray">
 
     <ImageView
         android:id="@+id/font_imageView"

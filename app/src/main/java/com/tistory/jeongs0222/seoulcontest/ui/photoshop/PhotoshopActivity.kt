@@ -1,5 +1,8 @@
 package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
+import android.content.res.Resources
+import android.graphics.BitmapFactory
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -10,6 +13,8 @@ import android.support.v7.widget.RecyclerView
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.RequestManager
@@ -47,7 +52,7 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
         mPresenter = PhotoshopPresenter()
 
-        mPresenter.setView(this, this)
+        mPresenter.setView(this, this, assets)
 
         mPresenter.setUpRecyclerView(0)
 
@@ -129,6 +134,8 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
     }
 
     override fun recyclerView(): RecyclerView = photoshop_recyclerView
+
+    override fun tempLinearLayout(): LinearLayout = photoshop_temp_linearLayout
 
     override fun onBackPressed() {
         super.onBackPressed()

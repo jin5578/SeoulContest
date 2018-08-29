@@ -7,15 +7,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorWhite">
 
-    <ImageView
-        android:id="@+id/photoshop_temp_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_marginTop="20dp"
-        android:adjustViewBounds="true"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/photoshop_temp_constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/temporary"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/photoshop_temp_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="450dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/temporary"/>
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
 
 
-class PhotoshopStampAdapter(internal val context: Context): RecyclerView.Adapter<PhotoshopStampAdapter.ViewHolder>() {
+class PhotoshopStampAdapter(internal val context: Context, val callback: (Int) -> Unit): RecyclerView.Adapter<PhotoshopStampAdapter.ViewHolder>() {
 
     var item = arrayOf(1, 2, 3, 4, 5, 6, 7, 8)
 
@@ -31,6 +31,10 @@ class PhotoshopStampAdapter(internal val context: Context): RecyclerView.Adapter
                 .into(holder.stamp_imageView)
 
         holder.stamp_textView.text = item[position].toString()
+
+        holder.stamp_entire_constraintLayout.setOnClickListener {
+            callback(position)
+        }
     }
 
     override fun getItemCount(): Int {

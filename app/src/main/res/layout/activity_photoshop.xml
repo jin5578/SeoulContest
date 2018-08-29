@@ -77,8 +77,9 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/photoshop_revise_constraintLayout"
         android:layout_width="0dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:visibility="gone"
+        android:background="@color/colorLightLightGray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,18 +92,39 @@
             android:scrollbars="none"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/null1">
 
         </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:id="@+id/null1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorLightGray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/photoshop_close_imageView"/>
 
         <ImageView
             android:id="@+id/photoshop_close_imageView"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginLeft="30dp"
             android:layout_marginBottom="15dp"
             android:src="@drawable/close_icon"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/photoshop_paint_imageView"/>
+
+        <ImageView
+            android:id="@+id/photoshop_paint_imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/paint_icon"
+            app:layout_constraintStart_toEndOf="@id/photoshop_close_imageView"
+            app:layout_constraintEnd_toStartOf="@id/photoshop_stamp_imageView"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
@@ -112,16 +134,16 @@
             android:layout_marginBottom="15dp"
             android:src="@drawable/stamp_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/photoshop_font_imageView"
+            app:layout_constraintStart_toEndOf="@id/photoshop_paint_imageView" />
 
         <ImageView
             android:id="@+id/photoshop_font_imageView"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
             android:src="@drawable/font_icon"
+            app:layout_constraintStart_toEndOf="@id/photoshop_stamp_imageView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

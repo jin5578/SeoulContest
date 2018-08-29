@@ -1,11 +1,13 @@
 package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.AssetManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.util.Log
+import android.widget.TextView
 import com.tistory.jeongs0222.seoulcontest.util.DynamicViewUtil
 
 
@@ -15,6 +17,7 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     private lateinit var context: Context
     private lateinit var assets: AssetManager
 
+    private lateinit var pAdapter: PhotoshopPaintAdapter
     private lateinit var mAdapter: PhotoshopStampAdapter
     private lateinit var fAdapter: PhotoshopFontAdapter
 
@@ -25,19 +28,38 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         this.assets = assets
     }
 
+    @SuppressLint("ResourceType")
     override fun setUpRecyclerView(sort: Int) {
 
         when(sort) {
-            0 -> mAdapter = PhotoshopStampAdapter(context) {
-                Log.e("position", it.toString())
+            0 -> pAdapter = PhotoshopPaintAdapter(context) {
+                if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
+                    DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
+                }
+            }
+
+            1 -> mAdapter = PhotoshopStampAdapter(context) {
                 dynamicTextView()
             }
 
-            1 -> fAdapter = PhotoshopFontAdapter(context)
+            2 -> fAdapter = PhotoshopFontAdapter(context) {
+                if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
+                    DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
+                }
+            }
         }
 
         view.recyclerView().apply {
-            adapter = if(sort == 0) mAdapter else fAdapter
+            //adapter = if(sort == 0) mAdapter else fAdapter
+            adapter = when(sort) {
+                0 -> pAdapter
+
+                1 -> mAdapter
+
+                2 -> fAdapter
+
+                else -> null
+            }
 
             layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
             setHasFixedSize(true)
@@ -61,6 +83,9 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         view.tempLinearLayout().addView(textView)*/
 
         view.tempLinearLayout().removeAllViews()
+
+        //GrayScale
+        //view.tempImageView().setColorFilter(DynamicViewUtil.grayScale())
 
         view.tempLinearLayout().addView(DynamicViewUtil.dynamicText(context, assets))
     }

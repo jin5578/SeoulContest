@@ -10,11 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
+import com.tistory.jeongs0222.seoulcontest.util.ArrayUtil
 
 
 class PhotoshopStampAdapter(internal val context: Context, val callback: (Int) -> Unit): RecyclerView.Adapter<PhotoshopStampAdapter.ViewHolder>() {
 
-    var item = arrayOf(1, 2, 3, 4, 5, 6, 7, 8)
+    var item = ArrayUtil.stampList
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_stamp, parent, false))
@@ -37,9 +39,8 @@ class PhotoshopStampAdapter(internal val context: Context, val callback: (Int) -
         }
     }
 
-    override fun getItemCount(): Int {
-        return 8
-    }
+    override fun getItemCount(): Int = item.size
+
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val stamp_entire_constraintLayout: ConstraintLayout

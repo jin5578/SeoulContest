@@ -10,11 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
+import com.tistory.jeongs0222.seoulcontest.util.ArrayUtil
 
 
-class PhotoshopFontAdapter(internal val context: Context): RecyclerView.Adapter<PhotoshopFontAdapter.ViewHolder>() {
+class PhotoshopFontAdapter(internal val context: Context, val callback: (Int) -> Unit): RecyclerView.Adapter<PhotoshopFontAdapter.ViewHolder>() {
 
-    var item = arrayOf("미생", "다음체", "야체", "몬소리체", "빙그레체")
+    var item = ArrayUtil.fontList
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,11 +33,14 @@ class PhotoshopFontAdapter(internal val context: Context): RecyclerView.Adapter<
                 .into(holder.font_imageView)
 
         holder.font_textView.text = item[position]
+
+        holder.font_entire_constraintLayout.setOnClickListener {
+            callback(position)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return 5
-    }
+    override fun getItemCount(): Int = item.size
+
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val font_entire_constraintLayout: ConstraintLayout

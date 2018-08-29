@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -87,12 +88,16 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
             photoshopVisibility(1)
         }
 
-        photoshop_stamp_imageView.setOnClickListener {
+        photoshop_paint_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(0)
         }
 
-        photoshop_font_imageView.setOnClickListener {
+        photoshop_stamp_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(1)
+        }
+
+        photoshop_font_imageView.setOnClickListener {
+            mPresenter.setUpRecyclerView(2)
         }
     }
 
@@ -134,6 +139,8 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
     }
 
     override fun recyclerView(): RecyclerView = photoshop_recyclerView
+
+    override fun tempImageView(): ImageView = photoshop_temp_imageView
 
     override fun tempLinearLayout(): LinearLayout = photoshop_temp_linearLayout
 

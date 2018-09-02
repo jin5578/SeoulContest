@@ -6,8 +6,10 @@ import android.content.res.AssetManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.util.Log
+import android.view.Gravity
+import android.widget.LinearLayout
 import android.widget.TextView
-import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.util.DynamicViewUtil
 
 
@@ -29,7 +31,6 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         this.assets = assets
     }
 
-    @SuppressLint("ResourceType")
     override fun setUpRecyclerView(sort: Int) {
 
         when(sort) {
@@ -42,24 +43,20 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
             }
 
             1 -> mAdapter = PhotoshopStampAdapter(context) {
+                divideStamp(it)
             }
 
 
             2 -> pAdapter = PhotoshopPaintAdapter(context) {
-                if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
-                    DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
-                }
+                dividePaint(it)
             }
 
             3 -> fAdapter = PhotoshopFontAdapter(context) {
-                if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
-                    DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
-                }
+                divideFont(it)
             }
         }
 
         view.recyclerView().apply {
-            //adapter = if(sort == 0) mAdapter else fAdapter
             adapter = when(sort) {
                 0 -> hAdapter
 
@@ -80,14 +77,59 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     }
 
     @SuppressLint("ResourceType")
-    private fun dynamicStoreTextView(charSequence: CharSequence) {
+    private fun divideStamp(it: Int) {
+        when(it) {
+            0 -> {
+                if(view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null) {
+                    view.tempLinearLayout().findViewById<TextView>(1).apply {
+                        gravity = Gravity.LEFT
+                        
+                    }
+                    view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.LEFT
 
+                    view.tempLinearLayout().findViewById<TextView>(2).gravity = Gravity.RIGHT
+                }
+            }
+        }
+    }
+
+    @SuppressLint("ResourceType")
+    private fun dividePaint(it: Int) {
+        if(view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null) {
+            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
+            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(2))
+        } else if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
+            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
+        } else if(view.tempLinearLayout().findViewById<TextView>(2) != null) {
+            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(2))
+        }
+    }
+
+    @SuppressLint("ResourceType")
+    private fun divideFont(it: Int) {
+        if (view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null) {
+            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
+            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(2), assets)
+        } else if (view.tempLinearLayout().findViewById<TextView>(1) != null) {
+            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
+        } else if(view.tempLinearLayout().findViewById<TextView>(2) != null) {
+            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(2), assets)
+        }
+    }
+
+
+    @SuppressLint("ResourceType")
+    private fun dynamicStoreTextView(charSequence: CharSequence) {
         /*if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
             view.tempLinearLayout().removeView(view.tempLinearLayout().findViewById(1))
         }*/
         view.tempLinearLayout().removeAllViews()
 
         view.tempLinearLayout().addView(DynamicViewUtil.dynamicStoreText(context, assets, charSequence))
+
+        if(charSequence.isBlank()) {
+            view.tempLinearLayout().removeView(view.tempLinearLayout().findViewById(1))
+        }
 
         //GrayScale
         //view.tempImageView().setColorFilter(DynamicViewUtil.grayScale())

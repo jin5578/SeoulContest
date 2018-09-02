@@ -39,6 +39,10 @@ object DynamicViewUtil {
         return textView
     }
 
+    fun dynamicPosition(textView: TextView) {
+
+    }
+
     fun dynamicFontColor(sort: Int, textView: TextView) {
         textView.setTextColor(Color.parseColor(ArrayUtil.paintColorList[sort]))
 

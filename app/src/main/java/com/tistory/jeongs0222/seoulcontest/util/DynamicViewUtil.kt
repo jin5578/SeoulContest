@@ -11,13 +11,28 @@ import android.widget.TextView
 object DynamicViewUtil {
 
     @SuppressLint("ResourceType")
-    fun dynamicText(context: Context, assets: AssetManager): TextView {
+    fun dynamicStoreText(context: Context, assets: AssetManager, charSequence: CharSequence): TextView {
         val textView = TextView(context)
 
         textView.id = 1
-        textView.text = "SHAKE SHACK BURGER\n\n CHEESE BURGER"
+        //textView.text = "SHAKE SHACK BURGER\n\n CHEESE BURGER"
+        textView.text = charSequence
         textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
         textView.textSize = 30F
+        textView.gravity = Gravity.CENTER_HORIZONTAL
+        textView.setTextColor(Color.WHITE)
+
+        return textView
+    }
+
+    @SuppressLint("ResourceType")
+    fun dynamicMenuText(context: Context, assets: AssetManager, charSequence: CharSequence): TextView {
+        val textView = TextView(context)
+
+        textView.id = 2
+        textView.text = charSequence
+        textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
+        textView.textSize = 20F
         textView.gravity = Gravity.CENTER_HORIZONTAL
         textView.setTextColor(Color.WHITE)
 

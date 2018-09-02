@@ -88,7 +88,8 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
             photoshopVisibility(1)
         }
 
-        photoshop_paint_imageView.setOnClickListener {
+
+        photoshop_placeHolder_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(0)
         }
 
@@ -96,8 +97,13 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
             mPresenter.setUpRecyclerView(1)
         }
 
-        photoshop_font_imageView.setOnClickListener {
+
+        photoshop_paint_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(2)
+        }
+
+        photoshop_font_imageView.setOnClickListener {
+            mPresenter.setUpRecyclerView(3)
         }
     }
 

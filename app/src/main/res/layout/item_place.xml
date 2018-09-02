@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/stamp_entire_constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorLightLightGray"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:padding="12dp"
+            android:gravity="center"
+            android:text="가게이름"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:fontFamily="@font/goyang"/>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorLightGray"/>
+
+        <EditText
+            android:id="@+id/place_store_editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:fontFamily="@font/goyang"
+            android:background="@null"
+            android:inputType="textMultiLine|textNoSuggestions"
+            tools:text="SHAKE SHACK BURGER"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:background="@color/colorLightGray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="12dp"
+            android:gravity="center"
+            android:text="메뉴"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:fontFamily="@font/goyang"/>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorLightGray"/>
+
+        <EditText
+            android:id="@+id/place_menu_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:fontFamily="@font/goyang"
+            android:background="@null"
+            android:inputType="textMultiLine|textNoSuggestions"
+            tools:text="CHEESE BURGER"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="매장검색"
+        android:textColor="@color/colorBlack"
+        android:textSize="10sp"
+        android:fontFamily="@font/goyang"
+        android:background="@drawable/rectangle_background"/>
+
+</LinearLayout>

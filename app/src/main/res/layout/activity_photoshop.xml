@@ -115,14 +115,14 @@
             android:src="@drawable/close_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/photoshop_paint_imageView"/>
+            app:layout_constraintEnd_toStartOf="@id/photoshop_placeHolder_imageView"/>
 
         <ImageView
-            android:id="@+id/photoshop_paint_imageView"
+            android:id="@+id/photoshop_placeHolder_imageView"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginBottom="15dp"
-            android:src="@drawable/paint_icon"
+            android:src="@drawable/placeholder_icon"
             app:layout_constraintStart_toEndOf="@id/photoshop_close_imageView"
             app:layout_constraintEnd_toStartOf="@id/photoshop_stamp_imageView"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -133,9 +133,19 @@
             android:layout_height="25dp"
             android:layout_marginBottom="15dp"
             android:src="@drawable/stamp_button"
+            app:layout_constraintStart_toEndOf="@id/photoshop_placeHolder_imageView"
+            app:layout_constraintEnd_toStartOf="@id/photoshop_paint_imageView"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/photoshop_paint_imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/paint_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/photoshop_font_imageView"
-            app:layout_constraintStart_toEndOf="@id/photoshop_paint_imageView" />
+            app:layout_constraintStart_toEndOf="@id/photoshop_stamp_imageView" />
 
         <ImageView
             android:id="@+id/photoshop_font_imageView"
@@ -143,7 +153,7 @@
             android:layout_height="25dp"
             android:layout_marginBottom="15dp"
             android:src="@drawable/font_icon"
-            app:layout_constraintStart_toEndOf="@id/photoshop_stamp_imageView"
+            app:layout_constraintStart_toEndOf="@id/photoshop_paint_imageView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

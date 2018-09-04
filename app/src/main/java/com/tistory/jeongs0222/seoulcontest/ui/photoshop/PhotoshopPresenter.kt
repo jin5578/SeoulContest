@@ -6,9 +6,7 @@ import android.content.res.AssetManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.util.Log
 import android.view.Gravity
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.tistory.jeongs0222.seoulcontest.util.DynamicViewUtil
 
@@ -83,7 +81,7 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
                 if(view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null) {
                     view.tempLinearLayout().findViewById<TextView>(1).apply {
                         gravity = Gravity.LEFT
-                        
+
                     }
                     view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.LEFT
 

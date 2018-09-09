@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getGallery() {
+    fun getGallery() {
         val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE)
 

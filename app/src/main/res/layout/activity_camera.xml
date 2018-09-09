@@ -36,6 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
+            android:id="@+id/camera_picture_imageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="40dp"
@@ -43,8 +44,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/camera_shooting_imageView"
             app:layout_constraintBottom_toBottomOf="@id/camera_shooting_imageView"/>
-
-
 
     </android.support.constraint.ConstraintLayout>
 

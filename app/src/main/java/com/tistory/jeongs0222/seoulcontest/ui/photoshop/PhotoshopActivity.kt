@@ -74,6 +74,10 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
     }
 
     private fun onClickEvent() {
+        photoshop_down_imageView.setOnClickListener {
+
+        }
+
         photoshop_revise_imageView.setOnClickListener {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 transitionSet(0)

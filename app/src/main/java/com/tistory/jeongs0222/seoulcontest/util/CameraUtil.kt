@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.hardware.Camera
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.*
 import android.view.SurfaceHolder
 import android.graphics.Bitmap
@@ -16,11 +15,10 @@ import android.os.Environment
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import android.hardware.Camera.AutoFocusCallback
 
 
 class CameraUtil(internal val context: Context, val activity: AppCompatActivity, val cameraId: Int, surfaceView: SurfaceView): ViewGroup(context), SurfaceHolder.Callback {
-
-    private val TAG = "CameraPreview"
 
     private lateinit var mCamera: Camera
     private lateinit var mCameraInfo: Camera.CameraInfo
@@ -32,7 +30,6 @@ class CameraUtil(internal val context: Context, val activity: AppCompatActivity,
 
 
     private var mIsPreview = false
-
 
 
     init {
@@ -113,28 +110,22 @@ class CameraUtil(internal val context: Context, val activity: AppCompatActivity,
         mCamera.startPreview()
 
         mIsPreview = true
-
-        Log.d(TAG, "Camera preview started.");
     }
+
 
     override fun surfaceChanged(p0: SurfaceHolder?, p1: Int, p2: Int, p3: Int) {
         if(mHolder.surface == null) {
-
-            Log.d(TAG, "Preview surface does not exist");
 
             return
         }
 
         mCamera.stopPreview()
-        Log.d(TAG, "Preview stopped.");
 
         val orientation = calculatePreviewOrientation(mCameraInfo, mDisplayOrientation)
         mCamera.setDisplayOrientation(orientation)
 
         mCamera.setPreviewDisplay(mHolder)
         mCamera.startPreview()
-
-        Log.d(TAG, "Camera preview started.");
     }
 
     override fun surfaceDestroyed(p0: SurfaceHolder?) {
@@ -209,7 +200,13 @@ class CameraUtil(internal val context: Context, val activity: AppCompatActivity,
     }
 
     fun takePicture() {
-        mCamera.takePicture(shutterCallback, rawCallback, jpegCallback)
+        val mAutoFocus = AutoFocusCallback { success, camera ->
+            if(success == true) {
+                mCamera.takePicture(shutterCallback, rawCallback, jpegCallback)
+            }
+        }
+
+        mCamera.autoFocus(mAutoFocus)
     }
 
     var shutterCallback: Camera.ShutterCallback = Camera.ShutterCallback { }
@@ -241,12 +238,10 @@ class CameraUtil(internal val context: Context, val activity: AppCompatActivity,
 
         //파일로 저장
         SaveImageTask().execute(currentData)
+
     }
 
     inner class SaveImageTask : AsyncTask<ByteArray, Void, Void>() {
-
-        private val TAG = "SaveImageTask"
-
 
         override fun doInBackground(vararg p0: ByteArray?): Void? {
             var outStream: FileOutputStream
@@ -266,11 +261,6 @@ class CameraUtil(internal val context: Context, val activity: AppCompatActivity,
             outStream.write(p0[0])
             outStream.flush()
             outStream.close()
-
-            Log.d(TAG, "onPictureTaken - wrote bytes: " + p0.size + " to "
-                    + outputFile.getAbsolutePath());
-
-            mCamera.startPreview()
 
             val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
 

@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import com.tistory.jeongs0222.seoulcontest.R
 
@@ -42,10 +43,12 @@ class PhotoshopPlaceAdapter(internal val context: Context, val callback: (String
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val place_store_editText: EditText
         val place_menu_editText: EditText
+        val place_search_button: Button
 
         init {
             place_store_editText = itemView.findViewById(R.id.place_store_editText)
             place_menu_editText = itemView.findViewById(R.id.place_menu_editText)
+            place_search_button = itemView.findViewById(R.id.place_search_button)
         }
     }
 

@@ -6,12 +6,17 @@ import android.content.res.AssetManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.util.Log
 import android.view.Gravity
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.tistory.jeongs0222.seoulcontest.util.DynamicViewUtil
 
 
 class PhotoshopPresenter: PhotoshopContract.Presenter {
+
+    private val TAG = "PhotoshopPresenter"
 
     private lateinit var view: PhotoshopContract.View
     private lateinit var context: Context
@@ -78,14 +83,23 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     private fun divideStamp(it: Int) {
         when(it) {
             0 -> {
-                if(view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null) {
+                if(existTextView(0)) {
                     view.tempLinearLayout().findViewById<TextView>(1).apply {
-                        gravity = Gravity.LEFT
+                        Log.e(TAG, "1")
+
+                        gravity = Gravity.LEFT or Gravity.TOP
 
                     }
-                    view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.LEFT
 
-                    view.tempLinearLayout().findViewById<TextView>(2).gravity = Gravity.RIGHT
+                    view.tempLinearLayout().findViewById<TextView>(2).apply {
+                        Log.e(TAG, "2")
+
+                        gravity = Gravity.RIGHT or Gravity.BOTTOM
+                    }
+                    //view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.LEFT
+                    //view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.START and Gravity.TOP
+
+                    //view.tempLinearLayout().findViewById<TextView>(2).gravity = Gravity.END and Gravity.BOTTOM
                 }
             }
         }
@@ -93,24 +107,24 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
 
     @SuppressLint("ResourceType")
     private fun dividePaint(it: Int) {
-        if(view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null) {
+        if(existTextView(0)) {
             DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
             DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(2))
-        } else if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
+        } else if(existTextView(1)) {
             DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
-        } else if(view.tempLinearLayout().findViewById<TextView>(2) != null) {
+        } else if(existTextView(2)) {
             DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(2))
         }
     }
 
     @SuppressLint("ResourceType")
     private fun divideFont(it: Int) {
-        if (view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null) {
+        if (existTextView(0)) {
             DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
             DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(2), assets)
-        } else if (view.tempLinearLayout().findViewById<TextView>(1) != null) {
+        } else if (existTextView(1)) {
             DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
-        } else if(view.tempLinearLayout().findViewById<TextView>(2) != null) {
+        } else if(existTextView(2)) {
             DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(2), assets)
         }
     }
@@ -136,11 +150,25 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     @SuppressLint("ResourceType")
     private fun dynamicMenuTextView(charSequence: CharSequence) {
 
-        if(view.tempLinearLayout().findViewById<TextView>(2) != null) {
+        if(existTextView(2)) {
             view.tempLinearLayout().removeView(view.tempLinearLayout().findViewById(2))
         }
 
         view.tempLinearLayout().addView(DynamicViewUtil.dynamicMenuText(context, assets, charSequence))
     }
 
+    @SuppressLint("ResourceType")
+    private fun existTextView(sort: Int): Boolean {
+        when(sort) {
+            0 -> return view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null
+
+
+            1 -> return view.tempLinearLayout().findViewById<TextView>(1) != null
+
+
+            2 -> return view.tempLinearLayout().findViewById<TextView>(2) != null
+        }
+
+        return false
+    }
 }

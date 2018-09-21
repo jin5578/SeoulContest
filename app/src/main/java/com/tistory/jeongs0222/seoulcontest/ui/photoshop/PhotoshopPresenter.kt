@@ -22,6 +22,8 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     private lateinit var context: Context
     private lateinit var assets: AssetManager
 
+
+
     private lateinit var hAdapter: PhotoshopPlaceAdapter
     private lateinit var mAdapter: PhotoshopStampAdapter
     private lateinit var pAdapter: PhotoshopPaintAdapter

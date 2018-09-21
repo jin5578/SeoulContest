@@ -21,6 +21,8 @@ import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.tistory.jeongs0222.seoulcontest.R
+import com.tistory.jeongs0222.seoulcontest.util.CameraUtil
+import com.tistory.jeongs0222.seoulcontest.util.ScreenShotUtil
 import com.tistory.jeongs0222.seoulcontest.util.copy
 import com.tistory.jeongs0222.seoulcontest.util.updateWith
 import kotlinx.android.synthetic.main.activity_photoshop.*
@@ -34,6 +36,8 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
     private lateinit var originalConstraintSet: ConstraintSet
     private lateinit var constraintSet1: ConstraintSet
     private lateinit var constraintLayout: ConstraintLayout
+
+    private lateinit var mScreenShotUtil: ScreenShotUtil
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +79,9 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
     private fun onClickEvent() {
         photoshop_down_imageView.setOnClickListener {
+            mScreenShotUtil = ScreenShotUtil(this)
 
+            mScreenShotUtil.SaveImageTask().execute(mScreenShotUtil.takeScreenShot(this))
         }
 
         photoshop_revise_imageView.setOnClickListener {

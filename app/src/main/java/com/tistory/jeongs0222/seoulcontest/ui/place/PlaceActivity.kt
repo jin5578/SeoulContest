@@ -4,6 +4,7 @@ import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -12,7 +13,11 @@ import kotlinx.android.synthetic.main.activity_place.*
 
 class PlaceActivity : AppCompatActivity(), PlaceContract.View {
 
+    private val TAG = "PlaceActivity"
+
     private lateinit var mPresenter: PlacePresenter
+
+    private var order = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +27,8 @@ class PlaceActivity : AppCompatActivity(), PlaceContract.View {
     }
 
     private fun init() {
+        getValue()
+
         mPresenter = PlacePresenter()
 
         mPresenter.setView(this, this)
@@ -29,6 +36,12 @@ class PlaceActivity : AppCompatActivity(), PlaceContract.View {
         mPresenter.setUpSearchFunc()
 
         mPresenter.setUpRecyclerView()
+    }
+
+    private fun getValue() {
+        order = getIntent().extras.getInt("order")
+
+        Log.e(TAG, order.toString())
     }
 
     override fun nameEditText(): EditText = place_name_editText

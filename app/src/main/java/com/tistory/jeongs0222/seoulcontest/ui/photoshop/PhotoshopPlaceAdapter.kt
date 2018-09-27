@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.tistory.jeongs0222.seoulcontest.R
+import com.tistory.jeongs0222.seoulcontest.ui.map.MapActivity
 import com.tistory.jeongs0222.seoulcontest.ui.place.PlaceActivity
 
 
@@ -39,7 +40,8 @@ class PhotoshopPlaceAdapter(internal val context: Context, val callback: (String
         })
 
         holder.place_search_button.setOnClickListener {
-            val intent = Intent(it.context, PlaceActivity::class.java)
+            //val intent = Intent(it.context, PlaceActivity::class.java)
+            val intent = Intent(it.context, MapActivity::class.java)
 
             it.context.startActivity(intent)
         }

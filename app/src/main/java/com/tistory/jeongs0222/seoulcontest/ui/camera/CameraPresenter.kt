@@ -1,7 +1,6 @@
 package com.tistory.jeongs0222.seoulcontest.ui.camera
 
 import android.content.Context
-import android.hardware.Camera
 
 
 class CameraPresenter: CameraContract.Presenter {

@@ -4,9 +4,15 @@ package com.tistory.jeongs0222.seoulcontest.util
 object ArrayUtil {
 
     val paintColorList = arrayOf("#FFFFFF", "#BDBDBD", "#A6A6A6", "#000000", "#f98da5", "#FF7F00", "#FF0000", "#FFFF00", "#3395ff", "#2278d4", "#e4b5fc", "#a854d4")
+
     val fontList = arrayOf("고양체", "나눔스퀘어라운드", "나눔스퀘어", "주아체", "한나는11살체", "고도라운드체", "고도마음체", "야놀자체", "미생체", "신비는7살체", "꽃길체", "개미똥구멍체")
+
     val fontsList = arrayOf("fonts/goyang.otf", "fonts/NanumSquareRoundOTFR.otf", "fonts/NanumSquareOTFRegular.otf", "fonts/bmjua.otf", "fonts/bmhanna_11yrs.otf", "fonts/godoRoundedR.ttf", "fonts/godoMaum.ttf", "fonts/yanoljaR.otf", "fonts/SDMiSaeng.ttf", "fonts/SSShinb7.ttf", "fonts/SangSangFlowerRoad.otf", "fonts/SangSangAnt.otf")
+
     val stampList = arrayOf(1, 2, 3, 4, 5, 6, 7, 8)
+
+    val guList = arrayOf("강서구", "양천구", "구로구", "영등포구", "동작구", "금천구", "관악구", "서초구", "강남구", "송파구", "강동구", "광진구", "성동구", "용산구", "중구", "마포구", "서대문구", "은평구", "종로구", "성북구", "동대문구", "중랑구", "강북구", "도봉구", "노원구")
+
     val urlList = arrayOf("http://openAPI.gangseo.seoul.kr:8088/674744486b6a696e35336977436147/json/GangseoModelRestaurantDesignate/",
             "http://openAPI.yangcheon.go.kr:8088/674744486b6a696e35336977436147/json/YcModelRestaurantDesignate/",
             "http://openAPI.guro.go.kr:8088/674744486b6a696e35336977436147/json/GuroModelRestaurantDesignate/",

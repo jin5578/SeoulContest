@@ -26,7 +26,8 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.camera.CameraActivity" />
         <activity android:name=".ui.photoshop.PhotoshopActivity" />
-        <activity android:name=".ui.place.PlaceActivity"></activity>
+        <activity android:name=".ui.place.PlaceActivity" />
+        <activity android:name=".ui.map.MapActivity"></activity>
     </application>
 
 </manifest>

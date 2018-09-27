@@ -1,8 +1,6 @@
 package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
-import android.content.res.Resources
-import android.graphics.BitmapFactory
-import android.graphics.Typeface
+
 import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -15,19 +13,16 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
-import com.bumptech.glide.RequestManager
-import com.bumptech.glide.request.RequestOptions
 import com.tistory.jeongs0222.seoulcontest.R
-import com.tistory.jeongs0222.seoulcontest.util.CameraUtil
 import com.tistory.jeongs0222.seoulcontest.util.ScreenShotUtil
 import com.tistory.jeongs0222.seoulcontest.util.copy
 import com.tistory.jeongs0222.seoulcontest.util.updateWith
 import kotlinx.android.synthetic.main.activity_photoshop.*
 
 class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
+
+    private val TAG = "PhotoshopActivity"
 
     private lateinit var mPresenter: PhotoshopPresenter
 
@@ -38,6 +33,8 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
     private lateinit var constraintLayout: ConstraintLayout
 
     private lateinit var mScreenShotUtil: ScreenShotUtil
+
+    var posXY = IntArray(2)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,11 +72,24 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
                 .asBitmap()
                 .load(tempUri)
                 .into(photoshop_temp_imageView)
+
+        tempLinearWidthHeight()
     }
 
     private fun onClickEvent() {
         photoshop_down_imageView.setOnClickListener {
-            mScreenShotUtil = ScreenShotUtil(this)
+            mScreenShotUtil = ScreenShotUtil(this, photoshop_temp_imageView)
+
+            photoshop_temp_imageView.getLocationOnScreen(posXY)
+
+            Log.e(TAG, posXY[0].toString())
+            Log.e(TAG, posXY[1].toString())
+
+            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.left.toString())
+            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.top.toString())
+            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.bottom.toString())
+            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.right.toString())
+
 
             mScreenShotUtil.SaveImageTask().execute(mScreenShotUtil.takeScreenShot(this))
         }
@@ -114,6 +124,13 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
         photoshop_font_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(3)
+        }
+    }
+
+    private fun tempLinearWidthHeight() {
+        photoshop_temp_linearLayout.apply {
+            minimumWidth = photoshop_temp_imageView.width
+            minimumHeight = photoshop_temp_imageView.height
         }
     }
 

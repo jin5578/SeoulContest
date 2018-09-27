@@ -8,15 +8,20 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Environment
+import android.widget.ImageView
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.security.AccessController.getContext
 
-class ScreenShotUtil(internal val context: Context) {
+class ScreenShotUtil(internal val context: Context, val imageView: ImageView) {
 
     fun takeScreenShot(activity: Activity): ByteArray {
         val view = activity.window.decorView
+
+        var posXY = IntArray(2)
+
+        imageView.getLocationOnScreen(posXY)
 
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
@@ -26,12 +31,7 @@ class ScreenShotUtil(internal val context: Context) {
 
         activity.window.decorView.getWindowVisibleDisplayFrame(frame)
 
-        val statusBarHeight = frame.top
-
-        val width = activity.windowManager.defaultDisplay.width
-        val height = activity.windowManager.defaultDisplay.height
-
-        val b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height-statusBarHeight)
+        val b = Bitmap.createBitmap(b1, posXY[0], posXY[1], imageView.width, imageView.height)
 
         view.destroyDrawingCache()
 

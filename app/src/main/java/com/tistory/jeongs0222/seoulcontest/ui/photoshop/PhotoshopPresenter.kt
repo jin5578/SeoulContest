@@ -89,14 +89,14 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
                     view.tempLinearLayout().findViewById<TextView>(1).apply {
                         Log.e(TAG, "1")
 
-                        gravity = Gravity.LEFT or Gravity.TOP
+                        gravity = Gravity.TOP
 
                     }
 
                     view.tempLinearLayout().findViewById<TextView>(2).apply {
                         Log.e(TAG, "2")
 
-                        gravity = Gravity.RIGHT or Gravity.BOTTOM
+                        gravity = Gravity.BOTTOM
                     }
                     //view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.LEFT
                     //view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.START and Gravity.TOP

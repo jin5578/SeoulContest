@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.tistory.jeongs0222.seoulcontest.R
+import com.tistory.jeongs0222.seoulcontest.ui.place.PlaceActivity
 
 
 class PhotoshopPlaceAdapter(internal val context: Context, val callback: (String, CharSequence) -> Unit) : RecyclerView.Adapter<PhotoshopPlaceAdapter.ViewHolder>(), TextWatcher {
@@ -35,6 +37,12 @@ class PhotoshopPlaceAdapter(internal val context: Context, val callback: (String
 
             }
         })
+
+        holder.place_search_button.setOnClickListener {
+            val intent = Intent(it.context, PlaceActivity::class.java)
+
+            it.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = 1

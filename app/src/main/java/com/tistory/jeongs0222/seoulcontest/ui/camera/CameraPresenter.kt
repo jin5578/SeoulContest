@@ -14,5 +14,4 @@ class CameraPresenter: CameraContract.Presenter {
         this.view = view
         this.context = context
     }
-
 }

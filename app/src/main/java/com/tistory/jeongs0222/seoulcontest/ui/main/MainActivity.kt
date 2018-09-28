@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
 
         checkPermission()
 
-        temporaryImage()
-
         onClickEvent()
     }
 
@@ -57,13 +55,6 @@ class MainActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, checkList, PERMISSION)
             }
         }
-    }
-
-    private fun temporaryImage() {
-        Glide.with(this)
-                .asBitmap()
-                .load(R.drawable.temporary)
-                .into(main_temporary_imageView)
     }
 
     private fun onClickEvent() {

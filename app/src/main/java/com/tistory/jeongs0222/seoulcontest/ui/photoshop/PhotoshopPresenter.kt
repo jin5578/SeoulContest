@@ -8,8 +8,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.util.Log
 import android.view.Gravity
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.tistory.jeongs0222.seoulcontest.util.DynamicViewUtil
 
@@ -21,8 +19,6 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     private lateinit var view: PhotoshopContract.View
     private lateinit var context: Context
     private lateinit var assets: AssetManager
-
-
 
     private lateinit var hAdapter: PhotoshopPlaceAdapter
     private lateinit var mAdapter: PhotoshopStampAdapter
@@ -87,6 +83,7 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
             0 -> {
                 if(existTextView(0)) {
                     view.tempLinearLayout().findViewById<TextView>(1).apply {
+
                         Log.e(TAG, "1")
 
                         gravity = Gravity.TOP
@@ -98,10 +95,6 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
 
                         gravity = Gravity.BOTTOM
                     }
-                    //view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.LEFT
-                    //view.tempLinearLayout().findViewById<TextView>(1).gravity = Gravity.START and Gravity.TOP
-
-                    //view.tempLinearLayout().findViewById<TextView>(2).gravity = Gravity.END and Gravity.BOTTOM
                 }
             }
         }
@@ -133,10 +126,8 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
 
 
     @SuppressLint("ResourceType")
-    private fun dynamicStoreTextView(charSequence: CharSequence) {
-        /*if(view.tempLinearLayout().findViewById<TextView>(1) != null) {
-            view.tempLinearLayout().removeView(view.tempLinearLayout().findViewById(1))
-        }*/
+    fun dynamicStoreTextView(charSequence: CharSequence) {
+
         view.tempLinearLayout().removeAllViews()
 
         view.tempLinearLayout().addView(DynamicViewUtil.dynamicStoreText(context, assets, charSequence))

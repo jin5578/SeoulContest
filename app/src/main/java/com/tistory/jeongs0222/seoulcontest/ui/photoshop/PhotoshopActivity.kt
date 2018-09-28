@@ -1,6 +1,7 @@
 package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -73,7 +74,7 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
                 .load(tempUri)
                 .into(photoshop_temp_imageView)
 
-        tempLinearWidthHeight()
+        //tempLinearWidthHeight()
     }
 
     private fun onClickEvent() {
@@ -127,12 +128,12 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
         }
     }
 
-    private fun tempLinearWidthHeight() {
+    /*private fun tempLinearWidthHeight() {
         photoshop_temp_linearLayout.apply {
             minimumWidth = photoshop_temp_imageView.width
             minimumHeight = photoshop_temp_imageView.height
         }
-    }
+    }*/
 
     private fun transitionSet(sort: Int) {
         when(sort) {
@@ -176,6 +177,14 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
     override fun tempImageView(): ImageView = photoshop_temp_imageView
 
     override fun tempLinearLayout(): LinearLayout = photoshop_temp_linearLayout
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(resultCode == RESULT_OK) {
+            if(requestCode == 2) {
+                mPresenter.dynamicStoreTextView(data!!.getStringExtra("name"))
+            }
+        }
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

@@ -24,8 +24,6 @@ class PhotoshopPaintAdapter(internal val context: Context, val callback: (Int) -
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
 
-        val items = item[position]
-
         holder.paint_imageView.setBackgroundColor(Color.parseColor(item[position]))
 
         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

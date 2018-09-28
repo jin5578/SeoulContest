@@ -1,5 +1,7 @@
 package com.tistory.jeongs0222.seoulcontest.ui.map
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -26,6 +28,18 @@ class MapActivity : AppCompatActivity(), MapContract.View {
     }
 
     override fun recyclerView(): RecyclerView = map_recyclerView
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(resultCode == RESULT_OK) {
+            if(requestCode == 3) {
+                val intent = Intent()
+                intent.putExtra("name", data!!.getStringExtra("name"))
+                setResult(RESULT_OK, intent)
+
+                finish()
+            }
+        }
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

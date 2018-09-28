@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -12,7 +13,6 @@ import android.widget.Button
 import android.widget.EditText
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.ui.map.MapActivity
-import com.tistory.jeongs0222.seoulcontest.ui.place.PlaceActivity
 
 
 class PhotoshopPlaceAdapter(internal val context: Context, val callback: (String, CharSequence) -> Unit) : RecyclerView.Adapter<PhotoshopPlaceAdapter.ViewHolder>(), TextWatcher {
@@ -43,7 +43,8 @@ class PhotoshopPlaceAdapter(internal val context: Context, val callback: (String
             //val intent = Intent(it.context, PlaceActivity::class.java)
             val intent = Intent(it.context, MapActivity::class.java)
 
-            it.context.startActivity(intent)
+            //it.context.startActivity(intent)
+            (it.context as Activity).startActivityForResult(intent, 2)
         }
     }
 

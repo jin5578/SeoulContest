@@ -41,9 +41,11 @@ class PlacePresenter: PlaceContract.Presenter, TextWatcher {
         view.nameEditText().addTextChangedListener(this@PlacePresenter)
     }
 
-    override fun setUpRecyclerView(order: Int) {
+    override fun setUpRecyclerView(order: Int, callback: (String) -> Unit) {
         this.order = order
-        pAdapter = PlaceAdapter(context)
+        pAdapter = PlaceAdapter(context) {
+            callback(it)
+        }
 
         view.recyclerView().apply {
             adapter = pAdapter

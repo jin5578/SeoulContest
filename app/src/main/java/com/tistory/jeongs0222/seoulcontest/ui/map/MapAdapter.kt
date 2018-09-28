@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.seoulcontest.ui.map
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -25,7 +26,7 @@ class MapAdapter(internal val context: Context): RecyclerView.Adapter<MapAdapter
             val intent = Intent(it.context, PlaceActivity::class.java)
             intent.putExtra("order", position)
 
-            it.context.startActivity(intent)
+            (it.context as Activity).startActivityForResult(intent, 3)
         }
     }
 

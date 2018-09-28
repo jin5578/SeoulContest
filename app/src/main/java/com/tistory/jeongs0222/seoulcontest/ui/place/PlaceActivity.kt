@@ -1,23 +1,22 @@
 package com.tistory.jeongs0222.seoulcontest.ui.place
 
-import android.opengl.Visibility
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import com.tistory.jeongs0222.seoulcontest.R
 import kotlinx.android.synthetic.main.activity_place.*
 
-class PlaceActivity : AppCompatActivity(), PlaceContract.View {
 
-    private val TAG = "PlaceActivity"
+class PlaceActivity : AppCompatActivity(), PlaceContract.View {
 
     private lateinit var mPresenter: PlacePresenter
 
     private var order = 0
+
+    private var selected_name = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +34,15 @@ class PlaceActivity : AppCompatActivity(), PlaceContract.View {
 
         mPresenter.setUpSearchFunc()
 
-        mPresenter.setUpRecyclerView(order)
+        mPresenter.setUpRecyclerView(order) {
+            selected_name = it
+
+            val intent = Intent()
+            intent.putExtra("name", it)
+            setResult(RESULT_OK, intent)
+
+            finish()
+        }
 
         mPresenter.setUpData()
 
@@ -44,8 +51,6 @@ class PlaceActivity : AppCompatActivity(), PlaceContract.View {
 
     private fun getValue() {
         order = getIntent().extras.getInt("order")
-
-        Log.e(TAG, order.toString())
     }
 
     override fun nameEditText(): EditText = place_name_editText

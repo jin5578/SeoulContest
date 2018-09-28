@@ -13,7 +13,7 @@ import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.util.ScreenShotUtil
@@ -118,13 +118,17 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
             mPresenter.setUpRecyclerView(1)
         }
 
-
-        photoshop_paint_imageView.setOnClickListener {
+        photoshop_size_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(2)
         }
 
-        photoshop_font_imageView.setOnClickListener {
+
+        photoshop_paint_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(3)
+        }
+
+        photoshop_font_imageView.setOnClickListener {
+            mPresenter.setUpRecyclerView(4)
         }
     }
 
@@ -176,7 +180,7 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
     override fun tempImageView(): ImageView = photoshop_temp_imageView
 
-    override fun tempLinearLayout(): LinearLayout = photoshop_temp_linearLayout
+    override fun tempRelativeLayout(): RelativeLayout = photoshop_temp_linearLayout
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode == RESULT_OK) {

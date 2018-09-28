@@ -7,16 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.SeekBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.util.ArrayUtil
 
 
-class PhotoshopStampAdapter(internal val context: Context, val callback: (Int) -> Unit): RecyclerView.Adapter<PhotoshopStampAdapter.ViewHolder>(), SeekBar.OnSeekBarChangeListener {
+class PhotoshopStampAdapter(internal val context: Context, val callback: (Int) -> Unit) : RecyclerView.Adapter<PhotoshopStampAdapter.ViewHolder>() {
 
-    //var item = ArrayUtil.stampList
+    var item = ArrayUtil.stampList
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,51 +23,32 @@ class PhotoshopStampAdapter(internal val context: Context, val callback: (Int) -
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setIsRecyclable(false)
+        val items = item[position]
 
-        //val items = item[position]
-
-        /*Glide.with(context)
+        Glide.with(context)
                 .asBitmap()
                 .load(R.drawable.temporary)
                 .into(holder.stamp_imageView)
 
-        holder.stamp_textView.text = item[position].toString()*/
+        holder.stamp_textView.text = item[position].toString()
 
 
-        /*holder.stamp_entire_constraintLayout.setOnClickListener {
+        holder.stamp_entire_constraintLayout.setOnClickListener {
             callback(position)
-        }*/
-
-        holder.stamp_progressBar.setOnSeekBarChangeListener(this@PhotoshopStampAdapter)
-    }
-
-    override fun getItemCount(): Int = 1
-
-
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val stamp_entire_constraintLayout: ConstraintLayout
-        //val stamp_imageView: ImageView
-        //val stamp_textView: TextView
-        val stamp_progressBar: SeekBar
-
-        init {
-            stamp_entire_constraintLayout = itemView.findViewById(R.id.stamp_entire_constraintLayout)
-            //stamp_imageView = itemView.findViewById(R.id.stamp_imageView)
-            //stamp_textView = itemView.findViewById(R.id.stamp_textView)
-            stamp_progressBar = itemView.findViewById(R.id.stamp_progressBar)
         }
     }
 
-    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-        callback(p1)
-    }
+    override fun getItemCount(): Int = item.size
 
-    override fun onStartTrackingTouch(p0: SeekBar?) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val stamp_entire_constraintLayout: ConstraintLayout
+        val stamp_imageView: ImageView
+        val stamp_textView: TextView
 
-    }
-
-    override fun onStopTrackingTouch(p0: SeekBar?) {
-
+        init {
+            stamp_entire_constraintLayout = itemView.findViewById(R.id.stamp_entire_constraintLayout)
+            stamp_imageView = itemView.findViewById(R.id.stamp_imageView)
+            stamp_textView = itemView.findViewById(R.id.stamp_textView)
+        }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/stamp_entire_constraintLayout"
     android:layout_width="wrap_content"
@@ -33,45 +33,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="1번"/>
 
-</android.support.constraint.ConstraintLayout>-->
-
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/stamp_entire_constraintLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorLightLightGray"
-    xmlns:tools="http://schemas.android.com/tools" >
-
-    <TextView
-        android:id="@+id/stamp_null1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="14dp"
-        android:text="글자크기"
-        android:textColor="@color/colorBlack"
-        android:textSize="12sp"
-        android:fontFamily="@font/goyang"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <SeekBar
-        android:id="@+id/stamp_progressBar"
-        style="@style/MySeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
-        android:paddingBottom="14dp"
-        android:max="40"
-        android:progress="20"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/stamp_null1"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
 </android.support.constraint.ConstraintLayout>
-

@@ -19,6 +19,7 @@ object DynamicViewUtil {
         textView.text = charSequence
         textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
         textView.textSize = 20.toFloat()
+        textView.tag = "DRAGGABLE TEXTVIEW"
         textView.gravity = Gravity.CENTER_HORIZONTAL
         textView.setTextColor(Color.WHITE)
 

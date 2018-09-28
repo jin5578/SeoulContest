@@ -6,8 +6,8 @@ import android.content.res.AssetManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.util.Log
-import android.view.Gravity
+import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.tistory.jeongs0222.seoulcontest.util.DynamicViewUtil
 
@@ -21,7 +21,8 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     private lateinit var assets: AssetManager
 
     private lateinit var hAdapter: PhotoshopPlaceAdapter
-    private lateinit var mAdapter: PhotoshopStampAdapter
+    private lateinit var sAdapter: PhotoshopStampAdapter
+    private lateinit var mAdapter: PhotoshopSizeAdapter
     private lateinit var pAdapter: PhotoshopPaintAdapter
     private lateinit var fAdapter: PhotoshopFontAdapter
 
@@ -44,15 +45,21 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
                 }
             }
 
-            1 -> mAdapter = PhotoshopStampAdapter(context) {
-                DynamicViewUtil.dynamicTextSize(it, view.tempLinearLayout().findViewById(1))
+            1 -> sAdapter = PhotoshopStampAdapter(context) {
+
             }
 
-            2 -> pAdapter = PhotoshopPaintAdapter(context) {
+            2 -> mAdapter = PhotoshopSizeAdapter(context) {
+                if(existTextView(1)) {
+                    DynamicViewUtil.dynamicTextSize(it, view.tempRelativeLayout().findViewById(1))
+                }
+            }
+
+            3 -> pAdapter = PhotoshopPaintAdapter(context) {
                 dividePaint(it)
             }
 
-            3 -> fAdapter = PhotoshopFontAdapter(context) {
+            4 -> fAdapter = PhotoshopFontAdapter(context) {
                 divideFont(it)
             }
         }
@@ -61,11 +68,13 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
             adapter = when(sort) {
                 0 -> hAdapter
 
-                1 -> mAdapter
+                1 -> sAdapter
 
-                2 -> pAdapter
+                2 -> mAdapter
 
-                3 -> fAdapter
+                3 -> pAdapter
+
+                4 -> fAdapter
 
                 else -> null
             }
@@ -77,28 +86,27 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         }
     }
 
-
     @SuppressLint("ResourceType")
     private fun dividePaint(it: Int) {
         if(existTextView(0)) {
-            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
-            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(2))
+            DynamicViewUtil.dynamicFontColor(it, view.tempRelativeLayout().findViewById(1))
+            DynamicViewUtil.dynamicFontColor(it, view.tempRelativeLayout().findViewById(2))
         } else if(existTextView(1)) {
-            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(1))
+            DynamicViewUtil.dynamicFontColor(it, view.tempRelativeLayout().findViewById(1))
         } else if(existTextView(2)) {
-            DynamicViewUtil.dynamicFontColor(it, view.tempLinearLayout().findViewById(2))
+            DynamicViewUtil.dynamicFontColor(it, view.tempRelativeLayout().findViewById(2))
         }
     }
 
     @SuppressLint("ResourceType")
     private fun divideFont(it: Int) {
         if (existTextView(0)) {
-            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
-            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(2), assets)
+            DynamicViewUtil.dynamicFont(it, view.tempRelativeLayout().findViewById(1), assets)
+            DynamicViewUtil.dynamicFont(it, view.tempRelativeLayout().findViewById(2), assets)
         } else if (existTextView(1)) {
-            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(1), assets)
+            DynamicViewUtil.dynamicFont(it, view.tempRelativeLayout().findViewById(1), assets)
         } else if(existTextView(2)) {
-            DynamicViewUtil.dynamicFont(it, view.tempLinearLayout().findViewById(2), assets)
+            DynamicViewUtil.dynamicFont(it, view.tempRelativeLayout().findViewById(2), assets)
         }
     }
 
@@ -106,13 +114,23 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     @SuppressLint("ResourceType")
     fun dynamicStoreTextView(charSequence: CharSequence) {
 
-        view.tempLinearLayout().removeAllViews()
+        view.tempRelativeLayout().removeAllViews()
 
-        view.tempLinearLayout().addView(DynamicViewUtil.dynamicStoreText(context, assets, charSequence))
+        val storeLayoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        storeLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE)
+
+        val storeTextView = DynamicViewUtil.dynamicStoreText(context, assets, charSequence)
+
+        storeTextView.layoutParams = storeLayoutParams
+
+        view.tempRelativeLayout().addView(storeTextView)
 
         if(charSequence.isBlank()) {
-            view.tempLinearLayout().removeView(view.tempLinearLayout().findViewById(1))
+            view.tempRelativeLayout().removeView(view.tempRelativeLayout().findViewById(1))
         }
+
+
 
         //GrayScale
         //view.tempImageView().setColorFilter(DynamicViewUtil.grayScale())
@@ -121,23 +139,33 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
     @SuppressLint("ResourceType")
     private fun dynamicMenuTextView(charSequence: CharSequence) {
 
+        val menuLayoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        menuLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
+
+        menuLayoutParams.addRule(RelativeLayout.BELOW, 1)
+
+        val menuTextView = DynamicViewUtil.dynamicMenuText(context, assets, charSequence)
+
+        menuTextView.layoutParams = menuLayoutParams
+
         if(existTextView(2)) {
-            view.tempLinearLayout().removeView(view.tempLinearLayout().findViewById(2))
+            view.tempRelativeLayout().removeView(view.tempRelativeLayout().findViewById(2))
         }
 
-        view.tempLinearLayout().addView(DynamicViewUtil.dynamicMenuText(context, assets, charSequence))
+        view.tempRelativeLayout().addView(menuTextView)
     }
 
     @SuppressLint("ResourceType")
     private fun existTextView(sort: Int): Boolean {
         when(sort) {
-            0 -> return view.tempLinearLayout().findViewById<TextView>(1) != null && view.tempLinearLayout().findViewById<TextView>(2) != null
+            0 -> return view.tempRelativeLayout().findViewById<TextView>(1) != null && view.tempRelativeLayout().findViewById<TextView>(2) != null
 
 
-            1 -> return view.tempLinearLayout().findViewById<TextView>(1) != null
+            1 -> return view.tempRelativeLayout().findViewById<TextView>(1) != null
 
 
-            2 -> return view.tempLinearLayout().findViewById<TextView>(2) != null
+            2 -> return view.tempRelativeLayout().findViewById<TextView>(2) != null
         }
 
         return false

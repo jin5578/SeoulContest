@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:src="@drawable/temporary"/>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/photoshop_temp_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,6 +37,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+        <RelativeLayout
+            android:id="@+id/photoshop_temp_linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
@@ -133,6 +142,16 @@
             android:layout_marginBottom="15dp"
             android:src="@drawable/stamp_button"
             app:layout_constraintStart_toEndOf="@id/photoshop_placeHolder_imageView"
+            app:layout_constraintEnd_toStartOf="@id/photoshop_size_imageView"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/photoshop_size_imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/fontsize_icon"
+            app:layout_constraintStart_toEndOf="@id/photoshop_stamp_imageView"
             app:layout_constraintEnd_toStartOf="@id/photoshop_paint_imageView"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -144,7 +163,7 @@
             android:src="@drawable/paint_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/photoshop_font_imageView"
-            app:layout_constraintStart_toEndOf="@id/photoshop_stamp_imageView" />
+            app:layout_constraintStart_toEndOf="@id/photoshop_size_imageView" />
 
         <ImageView
             android:id="@+id/photoshop_font_imageView"

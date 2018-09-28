@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/recommend_imageView"
+        android:layout_width="0dp"
+        android:layout_height="255dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/temporary"/>
+
+    <ImageView
+        android:id="@+id/recommend_favorite_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_favorite_border_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recommend_imageView"/>
+
+    <TextView
+        android:id="@+id/null1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:text="좋아요"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
+        android:fontFamily="@font/goyang"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recommend_favorite_imageView"/>
+
+    <TextView
+        android:id="@+id/recommend_favorite_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
+        android:fontFamily="@font/goyang"
+        app:layout_constraintStart_toEndOf="@id/null1"
+        app:layout_constraintTop_toTopOf="@id/null1"
+        app:layout_constraintBottom_toBottomOf="@id/null1"
+        tools:text="32개"/>
+
+    <LinearLayout
+        android:id="@+id/recommend_tag_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/null1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#평양냉면"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:fontFamily="@font/goyang"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="#비빔냉면"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:fontFamily="@font/goyang"/>-->
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -19,7 +19,6 @@ object DynamicViewUtil {
         textView.text = charSequence
         textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
         textView.textSize = 20.toFloat()
-        textView.tag = "DRAGGABLE TEXTVIEW"
         textView.gravity = Gravity.CENTER_HORIZONTAL
         textView.setTextColor(Color.WHITE)
 
@@ -36,6 +35,18 @@ object DynamicViewUtil {
         textView.textSize = 15.toFloat()
         textView.gravity = Gravity.CENTER_HORIZONTAL
         textView.setTextColor(Color.WHITE)
+
+        return textView
+    }
+
+    fun dynamicTagText(context: Context, assets: AssetManager, store: String): TextView {
+        val textView = TextView(context)
+
+        textView.text = store
+        textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
+        textView.textSize = 14.toFloat()
+        textView.gravity = Gravity.CENTER
+        textView.setTextColor(Color.DKGRAY)
 
         return textView
     }

@@ -15,6 +15,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
@@ -22,7 +23,9 @@ import com.tistory.jeongs0222.seoulcontest.ui.camera.CameraActivity
 import com.tistory.jeongs0222.seoulcontest.ui.photoshop.PhotoshopActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.View {
+
+    private lateinit var mPresenter: MainPresenter
 
     private val checkList = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
 
@@ -39,9 +42,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
 
+        mPresenter = MainPresenter()
+
+        mPresenter.setView(this, this)
+
         checkPermission()
 
         onClickEvent()
+
+        mPresenter.setUpRecyclerView()
+
+        mPresenter.setUpData()
+
+        mPresenter.loadMore()
     }
 
     private fun checkPermission() {
@@ -155,4 +168,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun recyclerView(): RecyclerView = main_recyclerView
 }

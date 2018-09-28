@@ -57,7 +57,7 @@
         android:id="@+id/null2"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/colorLightLightGray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:src="@drawable/camera_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -77,9 +77,8 @@
         android:id="@+id/main_picture_imageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:src="@drawable/picture_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

@@ -90,11 +90,11 @@
 
     <Button
         android:id="@+id/place_search_button"
-        android:layout_width="60dp"
+        android:layout_width="75dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:text="매장검색"
+        android:text="모범음식점 검색"
         android:textColor="@color/colorBlack"
         android:textSize="10sp"
         android:fontFamily="@font/goyang"

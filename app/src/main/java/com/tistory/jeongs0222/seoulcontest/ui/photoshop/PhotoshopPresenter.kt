@@ -32,6 +32,7 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         this.assets = assets
     }
 
+    @SuppressLint("ResourceType")
     override fun setUpRecyclerView(sort: Int) {
 
         when(sort) {
@@ -44,9 +45,8 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
             }
 
             1 -> mAdapter = PhotoshopStampAdapter(context) {
-                divideStamp(it)
+                DynamicViewUtil.dynamicTextSize(it, view.tempLinearLayout().findViewById(1))
             }
-
 
             2 -> pAdapter = PhotoshopPaintAdapter(context) {
                 dividePaint(it)
@@ -77,28 +77,6 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         }
     }
 
-    @SuppressLint("ResourceType")
-    private fun divideStamp(it: Int) {
-        when(it) {
-            0 -> {
-                if(existTextView(0)) {
-                    view.tempLinearLayout().findViewById<TextView>(1).apply {
-
-                        Log.e(TAG, "1")
-
-                        gravity = Gravity.TOP
-
-                    }
-
-                    view.tempLinearLayout().findViewById<TextView>(2).apply {
-                        Log.e(TAG, "2")
-
-                        gravity = Gravity.BOTTOM
-                    }
-                }
-            }
-        }
-    }
 
     @SuppressLint("ResourceType")
     private fun dividePaint(it: Int) {

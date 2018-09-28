@@ -18,7 +18,7 @@ object DynamicViewUtil {
         //textView.text = "SHAKE SHACK BURGER\n\n CHEESE BURGER"
         textView.text = charSequence
         textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
-        textView.textSize = 30F
+        textView.textSize = 20.toFloat()
         textView.gravity = Gravity.CENTER_HORIZONTAL
         textView.setTextColor(Color.WHITE)
 
@@ -32,7 +32,7 @@ object DynamicViewUtil {
         textView.id = 2
         textView.text = charSequence
         textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
-        textView.textSize = 20F
+        textView.textSize = 15.toFloat()
         textView.gravity = Gravity.CENTER_HORIZONTAL
         textView.setTextColor(Color.WHITE)
 
@@ -51,6 +51,10 @@ object DynamicViewUtil {
 
     fun dynamicFont(sort: Int, textView: TextView, assets: AssetManager) {
         textView.typeface = Typeface.createFromAsset(assets, ArrayUtil.fontsList[sort])
+    }
+
+    fun dynamicTextSize(size: Int, textView: TextView) {
+        textView.textSize = size.toFloat()
     }
 
     fun grayScale(): ColorMatrixColorFilter {

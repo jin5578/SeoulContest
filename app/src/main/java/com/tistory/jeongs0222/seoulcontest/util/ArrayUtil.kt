@@ -9,7 +9,7 @@ object ArrayUtil {
 
     val fontsList = arrayOf("fonts/goyang.otf", "fonts/NanumSquareRoundOTFR.otf", "fonts/NanumSquareOTFRegular.otf", "fonts/bmjua.otf", "fonts/bmhanna_11yrs.otf", "fonts/godoRoundedR.ttf", "fonts/godoMaum.ttf", "fonts/yanoljaR.otf", "fonts/SDMiSaeng.ttf", "fonts/SSShinb7.ttf", "fonts/SangSangFlowerRoad.otf", "fonts/SangSangAnt.otf")
 
-    val stampList = arrayOf(1, 2, 3, 4, 5, 6, 7, 8)
+    //val stampList = arrayOf(1, 2, 3, 4, 5, 6, 7, 8)
 
     val guList = arrayOf("강서구", "양천구", "구로구", "영등포구", "동작구", "금천구", "관악구", "서초구", "강남구", "송파구", "강동구", "광진구", "성동구", "용산구", "중구", "마포구", "서대문구", "은평구", "종로구", "성북구", "동대문구", "중랑구", "강북구", "도봉구", "노원구")
 

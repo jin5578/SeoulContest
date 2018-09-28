@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/font_entire_constraintLayout"
@@ -11,15 +10,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorLightLightGray">
 
-    <ImageView
-        android:id="@+id/font_imageView"
+    <TextView
+        android:id="@+id/font_temporary_textView"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:scaleType="centerCrop"
+        android:text="가"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:src="@drawable/temporary"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/font_textView"

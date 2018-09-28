@@ -38,4 +38,5 @@ object ArrayUtil {
             "http://openAPI.gangbuk.go.kr:8088/674744486b6a696e35336977436147/json/GbModelRestaurantDesignate/",
             "http://openAPI.dobong.go.kr:8088/674744486b6a696e35336977436147/json/DobongModelRestaurantDesignate/",
             "http://openAPI.nowon.go.kr:8088/674744486b6a696e35336977436147/json/NwModelRestaurantDesignate/")
+
 }

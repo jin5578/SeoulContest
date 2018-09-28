@@ -26,4 +26,10 @@ class MapActivity : AppCompatActivity(), MapContract.View {
     }
 
     override fun recyclerView(): RecyclerView = map_recyclerView
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        finish()
+    }
 }

@@ -1,5 +1,6 @@
 package com.tistory.jeongs0222.seoulcontest.api
 
+import android.util.Log
 import com.tistory.jeongs0222.seoulcontest.util.ArrayUtil
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -9,9 +10,11 @@ class GoApiClient {
 
     companion object {
 
-        private var baseUrl = "http://openapi.gangnam.go.kr:8088/674744486b6a696e35336977436147/json/GnModelRestaurantDesignate/"
+        private var baseUrl = ""
 
         fun create(district: Int): GoApiService {
+
+            Log.e("GoApiClient", district.toString())
 
             baseUrl = ArrayUtil.urlList[district]
 

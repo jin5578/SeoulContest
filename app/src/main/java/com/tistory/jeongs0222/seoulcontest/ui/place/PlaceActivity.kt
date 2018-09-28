@@ -35,7 +35,11 @@ class PlaceActivity : AppCompatActivity(), PlaceContract.View {
 
         mPresenter.setUpSearchFunc()
 
-        mPresenter.setUpRecyclerView()
+        mPresenter.setUpRecyclerView(order)
+
+        mPresenter.setUpData()
+
+        mPresenter.loadMore()
     }
 
     private fun getValue() {
@@ -55,4 +59,17 @@ class PlaceActivity : AppCompatActivity(), PlaceContract.View {
     }
 
     override fun recyclerView(): RecyclerView = place_recyclerView
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        finish()
+    }
+
+    override fun onDestroy() {
+        mPresenter.disposableClear()
+
+        super.onDestroy()
+
+    }
 }

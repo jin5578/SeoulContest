@@ -22,6 +22,12 @@ interface PlaceContract {
 
         fun setUpSearchFunc()
 
-        fun setUpRecyclerView()
+        fun setUpRecyclerView(order: Int)
+
+        fun setUpData()
+
+        fun loadMore()
+
+        fun disposableClear()
     }
 }

@@ -33,6 +33,8 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
     private lateinit var tempUri: Uri
 
+    private var screenShotPath: String = " "
+
     private lateinit var originalConstraintSet: ConstraintSet
     private lateinit var constraintSet1: ConstraintSet
     private lateinit var constraintLayout: ConstraintLayout
@@ -96,7 +98,9 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
             Log.e(TAG, photoshop_temp_imageView.drawable.bounds.right.toString())
 
 
-            mScreenShotUtil.SaveImageTask().execute(mScreenShotUtil.takeScreenShot(this))
+            mScreenShotUtil.SaveImageTask() {
+                screenShotPath = it
+            }.execute(mScreenShotUtil.takeScreenShot(this))
 
             showSnackbar(findViewById(R.id.parent), "FOODSTAMP에 사진을 업로드하시겠습니까?", Snackbar.LENGTH_LONG)
 
@@ -163,7 +167,9 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
         snackbar.setAction("확인", View.OnClickListener {
             snackbar.dismiss()
 
-            
+            confirmClickable(0)
+
+            mPresenter.postData(screenShotPath)
         })
 
         snackbar.show()
@@ -219,12 +225,30 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
     override fun tempRelativeLayout(): RelativeLayout = photoshop_temp_linearLayout
 
+    override fun confirmClickable(value: Int) {
+        when(value) {
+            0 -> photoshop_progressBar.visibility = View.VISIBLE
+
+            1 -> photoshop_progressBar.visibility = View.GONE
+        }
+    }
+
+    override fun viewFinish() {
+        finish()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode == RESULT_OK) {
             if(requestCode == 2) {
                 mPresenter.dynamicStoreTextView(data!!.getStringExtra("name"))
             }
         }
+    }
+
+    override fun onDestroy() {
+        mPresenter.disposableClear()
+
+        super.onDestroy()
     }
 
     override fun onBackPressed() {

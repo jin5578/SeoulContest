@@ -8,6 +8,7 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Environment
+import android.util.Log
 import android.widget.ImageView
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -43,9 +44,11 @@ class ScreenShotUtil(internal val context: Context, val imageView: ImageView) {
         return currentData
     }
 
-    inner class SaveImageTask : AsyncTask<ByteArray, Void, Void>() {
+    inner class SaveImageTask(val callback: (String) -> Unit) : AsyncTask<ByteArray, Void, Void>() {
 
         override fun doInBackground(vararg p0: ByteArray?): Void? {
+            var screenShotPath = " "
+
             var outStream: FileOutputStream
 
             val path = File(Environment.getExternalStorageDirectory().absolutePath + "/FOODSTAMP")
@@ -58,6 +61,9 @@ class ScreenShotUtil(internal val context: Context, val imageView: ImageView) {
 
             var outputFile = File(path, filename)
 
+            screenShotPath = outputFile.path.toString()
+
+
             outStream = FileOutputStream(outputFile)
 
             outStream.write(p0[0])
@@ -69,8 +75,11 @@ class ScreenShotUtil(internal val context: Context, val imageView: ImageView) {
             mediaScanIntent.setData(Uri.fromFile(outputFile))
             context.sendBroadcast(mediaScanIntent)
 
+            callback(screenShotPath)
 
             return null
+
+            //return outputFile.path.toString()
         }
 
 

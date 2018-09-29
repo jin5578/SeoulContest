@@ -18,13 +18,13 @@
         tools:src="@drawable/temporary"/>
 
     <ImageView
-        android:id="@+id/recommend_favorite_imageView"
+        android:id="@+id/recommend_like_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:padding="5dp"
-        android:src="@drawable/ic_favorite_border_black_24dp"
+        android:src="@drawable/ic_favorite_pink_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recommend_imageView"/>
 
@@ -36,10 +36,10 @@
         android:layout_marginLeft="15dp"
         android:text="좋아요"
         android:textColor="@color/colorBlack"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:fontFamily="@font/goyang"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recommend_favorite_imageView"/>
+        app:layout_constraintTop_toBottomOf="@id/recommend_like_imageView"/>
 
     <TextView
         android:id="@+id/recommend_favorite_textView"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:textColor="@color/colorBlack"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:fontFamily="@font/goyang"
         app:layout_constraintStart_toEndOf="@id/null1"
         app:layout_constraintTop_toTopOf="@id/null1"

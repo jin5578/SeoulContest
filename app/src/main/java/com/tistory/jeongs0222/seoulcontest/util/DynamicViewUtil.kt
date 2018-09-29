@@ -44,7 +44,7 @@ object DynamicViewUtil {
 
         textView.text = store
         textView.typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
-        textView.textSize = 14.toFloat()
+        textView.textSize = 12.toFloat()
         textView.gravity = Gravity.CENTER
         textView.setTextColor(Color.DKGRAY)
 

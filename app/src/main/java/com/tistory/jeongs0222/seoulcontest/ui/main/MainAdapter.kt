@@ -2,6 +2,7 @@ package com.tistory.jeongs0222.seoulcontest.ui.main
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,7 @@ import com.tistory.jeongs0222.seoulcontest.model.hostModel.HoModel
 import com.tistory.jeongs0222.seoulcontest.util.DynamicViewUtil
 
 
-class MainAdapter(internal val context: Context, val callback: () -> Unit): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(internal val context: Context, val callback: (Int) -> Unit): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     var item: MutableList<HoModel.recommendItem> = ArrayList()
 
@@ -42,9 +43,10 @@ class MainAdapter(internal val context: Context, val callback: () -> Unit): Recy
                 )
                 .into(holder.recommend_imageView)
 
-        holder.recommend_favorite_imageView.setOnClickListener {
-            callback
+        holder.recommend_like_imageView.setOnClickListener {
+            callback(items.order)
         }
+
 
         holder.recommend_favorite_textView.text = items.like.toString() + "개"
 
@@ -68,13 +70,13 @@ class MainAdapter(internal val context: Context, val callback: () -> Unit): Recy
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val recommend_imageView: ImageView
-        val recommend_favorite_imageView: ImageView
+        val recommend_like_imageView: ImageView
         val recommend_favorite_textView: TextView
         val recommend_tag_layout: LinearLayout
 
         init {
             recommend_imageView = itemView.findViewById(R.id.recommend_imageView)
-            recommend_favorite_imageView = itemView.findViewById(R.id.recommend_favorite_imageView)
+            recommend_like_imageView = itemView.findViewById(R.id.recommend_like_imageView)
             recommend_favorite_textView = itemView.findViewById(R.id.recommend_favorite_textView)
             recommend_tag_layout = itemView.findViewById(R.id.recommend_tag_layout)
         }

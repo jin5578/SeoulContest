@@ -38,7 +38,7 @@ class MainPresenter: MainContract.Presenter {
         mAdapter = MainAdapter(context) {
             //like 이미지 바꾸는거 보여줘야한다
 
-            postLike()
+            postLike(it)
         }
 
         view.recyclerView().apply {
@@ -94,7 +94,15 @@ class MainPresenter: MainContract.Presenter {
         })
     }
 
-    private fun postLike() {
-
+    private fun postLike(order: Int) {
+        compositeDisposable
+                .add(apiClient.recommendLike(order)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnError {
+                            it.printStackTrace()
+                        }
+                        .subscribe()
+                )
     }
 }

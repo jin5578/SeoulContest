@@ -2,7 +2,6 @@ package com.tistory.jeongs0222.seoulcontest.ui.main
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View

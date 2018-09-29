@@ -25,8 +25,6 @@ import java.util.*
 
 class PhotoshopPresenter: PhotoshopContract.Presenter {
 
-    private val TAG = "PhotoshopPresenter"
-
     private lateinit var view: PhotoshopContract.View
     private lateinit var context: Context
     private lateinit var assets: AssetManager
@@ -224,11 +222,6 @@ class PhotoshopPresenter: PhotoshopContract.Presenter {
         if(charSequence.isBlank()) {
             view.tempRelativeLayout().removeView(view.tempRelativeLayout().findViewById(1))
         }
-
-
-
-        //GrayScale
-        //view.tempImageView().setColorFilter(DynamicViewUtil.grayScale())
     }
 
     @SuppressLint("ResourceType")

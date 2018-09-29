@@ -3,7 +3,6 @@ package com.tistory.jeongs0222.seoulcontest.ui.place
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +21,6 @@ class PlaceAdapter(internal val context: Context, val callback: (String) -> Unit
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.e("PlaceAdapter", item.size.toString())
-
         holder.place_name_textView.text = item[position].UPSO_NM
         holder.place_address_textView.text = item[position].SITE_ADDR_RD
         holder.place_number_textView.text = item[position].SNT_UPTAE_NM

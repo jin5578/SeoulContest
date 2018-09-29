@@ -26,10 +26,6 @@ class PhotoshopPaintAdapter(internal val context: Context, val callback: (Int) -
 
         holder.paint_imageView.setBackgroundColor(Color.parseColor(item[position]))
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            holder.paint_imageView.setBackground(ShapeDrawable(OvalShape()))
-        }*/
-
         holder.paint_entire_constraintLayout.setOnClickListener {
             callback(position)
         }

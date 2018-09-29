@@ -40,10 +40,8 @@ class PhotoshopPlaceAdapter(internal val context: Context, val callback: (String
         })
 
         holder.place_search_button.setOnClickListener {
-            //val intent = Intent(it.context, PlaceActivity::class.java)
             val intent = Intent(it.context, MapActivity::class.java)
 
-            //it.context.startActivity(intent)
             (it.context as Activity).startActivityForResult(intent, 2)
         }
     }

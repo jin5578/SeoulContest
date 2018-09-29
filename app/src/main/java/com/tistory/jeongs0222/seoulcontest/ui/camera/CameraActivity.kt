@@ -7,7 +7,6 @@ import android.hardware.Camera
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.tistory.jeongs0222.seoulcontest.R
@@ -69,8 +68,6 @@ class CameraActivity : AppCompatActivity(), CameraContract.View {
         if(requestCode == PICK_FROM_GALLERY) {
 
             if(resultCode == Activity.RESULT_OK) {
-
-                Log.d("test","data : "+data)
 
                 if(data != null) {
                     val temp = data.data

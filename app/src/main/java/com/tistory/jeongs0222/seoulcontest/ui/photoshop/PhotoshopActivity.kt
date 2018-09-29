@@ -13,7 +13,6 @@ import android.support.constraint.ConstraintSet
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -26,8 +25,6 @@ import com.tistory.jeongs0222.seoulcontest.util.updateWith
 import kotlinx.android.synthetic.main.activity_photoshop.*
 
 class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
-
-    private val TAG = "PhotoshopActivity"
 
     private lateinit var mPresenter: PhotoshopPresenter
 
@@ -88,15 +85,6 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
             mScreenShotUtil = ScreenShotUtil(this, photoshop_temp_imageView)
 
             photoshop_temp_imageView.getLocationOnScreen(posXY)
-
-            Log.e(TAG, posXY[0].toString())
-            Log.e(TAG, posXY[1].toString())
-
-            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.left.toString())
-            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.top.toString())
-            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.bottom.toString())
-            Log.e(TAG, photoshop_temp_imageView.drawable.bounds.right.toString())
-
 
             mScreenShotUtil.SaveImageTask() {
                 screenShotPath = it
@@ -174,13 +162,6 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
         snackbar.show()
     }
-
-    /*private fun tempLinearWidthHeight() {
-        photoshop_temp_linearLayout.apply {
-            minimumWidth = photoshop_temp_imageView.width
-            minimumHeight = photoshop_temp_imageView.height
-        }
-    }*/
 
     private fun transitionSet(sort: Int) {
         when(sort) {

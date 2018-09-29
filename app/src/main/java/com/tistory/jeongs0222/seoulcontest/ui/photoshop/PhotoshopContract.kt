@@ -2,7 +2,6 @@ package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
 import android.content.Context
 import android.content.res.AssetManager
-import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
 import android.widget.RelativeLayout

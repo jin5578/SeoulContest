@@ -8,12 +8,11 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Environment
-import android.util.Log
 import android.widget.ImageView
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.security.AccessController.getContext
+
 
 class ScreenShotUtil(internal val context: Context, val imageView: ImageView) {
 
@@ -78,8 +77,6 @@ class ScreenShotUtil(internal val context: Context, val imageView: ImageView) {
             callback(screenShotPath)
 
             return null
-
-            //return outputFile.path.toString()
         }
 
 

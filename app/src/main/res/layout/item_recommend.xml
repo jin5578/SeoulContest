@@ -68,24 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!--<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#평양냉면"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp"
-            android:fontFamily="@font/goyang"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="#비빔냉면"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp"
-            android:fontFamily="@font/goyang"/>-->
-
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

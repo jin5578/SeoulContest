@@ -17,7 +17,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.ui.camera.CameraActivity
 import com.tistory.jeongs0222.seoulcontest.ui.photoshop.PhotoshopActivity
@@ -134,7 +133,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             if (grantResults.isNotEmpty()) {
                 for (i in 0..grantResults.size - 1) {
                     if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                        //Toast.makeText(this, "권한을 허용해야 앱을 이용할 수 있습니다.", Toast.LENGTH_SHORT).show()
 
                         return
                     }
@@ -159,11 +157,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                     intent.putExtra("temp", temp)
 
                     startActivity(intent)
-
-                    /*Glide.with(this)
-                            .asBitmap()
-                            .load(temp)
-                            .into(main_temporary_imageView)*/
                 }
             }
         }

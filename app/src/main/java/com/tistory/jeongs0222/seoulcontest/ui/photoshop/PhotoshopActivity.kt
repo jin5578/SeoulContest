@@ -2,18 +2,22 @@ package com.tistory.jeongs0222.seoulcontest.ui.photoshop
 
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.tistory.jeongs0222.seoulcontest.R
 import com.tistory.jeongs0222.seoulcontest.util.ScreenShotUtil
@@ -93,6 +97,9 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
 
 
             mScreenShotUtil.SaveImageTask().execute(mScreenShotUtil.takeScreenShot(this))
+
+            showSnackbar(findViewById(R.id.parent), "FOODSTAMP에 사진을 업로드하시겠습니까?", Snackbar.LENGTH_LONG)
+
         }
 
         photoshop_revise_imageView.setOnClickListener {
@@ -130,6 +137,36 @@ class PhotoshopActivity : AppCompatActivity(), PhotoshopContract.View {
         photoshop_font_imageView.setOnClickListener {
             mPresenter.setUpRecyclerView(4)
         }
+    }
+
+    private fun showSnackbar(view: View, message: String, duration: Int) {
+        val snackbar = Snackbar.make(view, message, duration)
+        snackbar.setActionTextColor(Color.BLACK)
+
+        val snackbarView = snackbar.view
+        snackbarView.setBackgroundColor(resources.getColor(R.color.colorTabSelected))
+
+        val snackbarTextView = snackbarView.findViewById<TextView>(android.support.design.R.id.snackbar_text)
+        snackbarTextView.apply {
+            setTextColor(Color.WHITE)
+            setTextSize(13F)
+            typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
+        }
+
+        val snackbarActionTextView = snackbarView.findViewById<TextView>(android.support.design.R.id.snackbar_action)
+        snackbarActionTextView.apply {
+            setTextColor(Color.WHITE)
+            setTextSize(13F)
+            typeface = Typeface.createFromAsset(assets, "fonts/goyang.otf")
+        }
+
+        snackbar.setAction("확인", View.OnClickListener {
+            snackbar.dismiss()
+
+            
+        })
+
+        snackbar.show()
     }
 
     /*private fun tempLinearWidthHeight() {
